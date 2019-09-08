@@ -3,11 +3,30 @@
   <div class="box box-info">
     <div class="box-header with-border">
       <h3 class="box-title"></h3>
+    </div >
+    <div class="col-sm-12"  *ngIf="hasError">
+        <mk-alert [dismissOnTimeout]="10000"     backgroundColor="danger">
+            <h4>
+              <i class="icon fa fa-ban"></i>
+             Error!
+            </h4>
+           {{error}}
+          </mk-alert>
+    </div>
+    <div class="col-sm-12"  *ngIf="hasSuccess">
+        <mk-alert [dismissOnTimeout]="10000"    backgroundColor="success">
+            <h4>
+              <i class="icon fa fa-check"></i>
+              Success!
+            </h4>
+           {{success}}
+          </mk-alert>
     </div>
     <!-- /.box-header -->
     <!-- form start -->
     <form action="/" class="form-horizontal" [formGroup]="addProductForm" (ngSubmit)="onSubmit()" method="post">
       <div class="box-body">
+          <input type="hidden" formControlName="ID" />
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Product Name</label>
 
@@ -51,21 +70,24 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th >ProductName</th>
-            <th>ProductDescription</th>
+            <th >Product Name</th>
+            <th>Product Description</th>
+            <th>Cost</th>
             <th>Edit</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let camper of products">
-            <!-- <td cellpadding="0" cellspacing="0" class="avatar-cell"><img class="avatar" src="{{camper.img}}" alt="camper avatar"></td> -->
+          
             <td>{{camper.productName}}</td>
             <td>{{camper.productDescription}}</td>
-            <td><i class="fa fa-pencil" aria-hidden="true"></i></td>
+            <td>{{camper.cost}}</td>
+            <td><i class="fa fa-pencil" style="cursor: pointer" aria-hidden="true" (click) ="EditProduct(camper)" ></i></td>
           </tr>
     
           </tbody>
           </table>
+
     </div>
     <!-- /.box-body -->
   </div>

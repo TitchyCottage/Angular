@@ -6,6 +6,7 @@ import { AddProductComponent } from './addProduct.component';
 // import {TableModule} from 'primeng/table';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlertModule as MkAlertModule, BoxModule } from 'angular-admin-lte';
 
 @NgModule({
   imports: [
@@ -13,8 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AddProductRoutingModule,
     // BrowserAnimationsModule,
     // TableModule
-    FormsModule,ReactiveFormsModule
+    FormsModule,ReactiveFormsModule,
+    MkAlertModule, BoxModule
   ],
+
   declarations: [AddProductComponent]
 })
 export class AddProductModule {

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl:"http://localhost:50594"
+  // apiUrl:"https://titchycotageapi.azurewebsites.net"
 };
 
 /*

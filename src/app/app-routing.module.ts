@@ -46,6 +46,13 @@ const routes: Routes = [
             title: 'View Product'
           }
          },
+         {     
+        path: 'add-quantity/:id',
+         loadChildren: './Product/add-quantity/add-quantity.module#AddQuantityModule',
+         data: {
+           title: 'Add Quantity'
+         }
+      },
          {
           path: 'addProduct',
           loadChildren: './Product/addProduct/addProduct.module#AddProductModule',
@@ -53,13 +60,13 @@ const routes: Routes = [
             title: 'Add Product'
           }
         },
-      //     {
-      //       path: 'addDistibutor',
-      //       loadChildren: './Product/addDistibutor/addDistibutor.module#AddDistibutorModule',
-      //       data: {
-      //         title: 'Add Distibutor'
-      //       }
-      //    },
+          {
+            path: 'add-distibutor/:id',
+            loadChildren: './Product/add-distibutor/add-distibutor.module#AddDistibutorModule',
+            data: {
+              title: 'Add Distibutor'
+            }
+         },
          {
           path: 'view-distibutor',
           loadChildren: './Product/view-distibutor/view-distibutor.module#ViewDistibutorModule',
@@ -67,7 +74,6 @@ const routes: Routes = [
             title: 'View Distibutor'
           }
        }
-
         //, {
         //   path: 'custom',
         //   loadChildren: './+layout/custom/custom.module#CustomModule',
@@ -78,7 +84,49 @@ const routes: Routes = [
         // }
       ]
     },
-
+    {
+      path: 'Distibutor',
+      data: {
+        title: 'Distibutor',
+      },
+      children: [
+        {
+          path: 'dashboard',
+          loadChildren: './Distibutor/dashboard/dashboard.module#DashboardModule',
+          data: {
+            title: 'Dashboard'
+          }
+         },
+         {
+          path: 'check-in',
+          loadChildren: './Distibutor/check-in/check-in.module#CheckInModule',
+          data: {
+            title: 'Check-In'
+          }
+         },
+         {
+          path: 'check-out',
+          loadChildren: './Distibutor/check-out/check-out.module#CheckOutModule',
+          data: {
+            title: 'Check-out'
+          }
+         },
+         {
+          path: 'view-retailer',
+          loadChildren: './Distibutor/view-retailer/view-retailer.module#ViewRetailerModule',
+          data: {
+            title: 'View Retailer'
+          }
+         },
+         {
+          path: 'add-retailer/:id',
+          loadChildren: './Distibutor/add-retailer/add-retailer.module#AddRetailerModule',
+          data: {
+            title: 'Add Retailer'
+          }
+       },
+        ]
+      },
      {
       path: 'layout',
       data: {

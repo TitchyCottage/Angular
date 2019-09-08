@@ -19,7 +19,6 @@
           <input type="email" formControlName="username" class="form-control" placeholder="Email" >
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
           <div *ngIf="submitted && f.username.errors">
-              <!-- <div *ngIf="f.username.errors.required">Username is required</div> -->
               <label *ngIf="f.username.errors.required" class="control-label" for="inputError">
                 <i class="fa fa-times-circle-o"></i> Email is required</label>
           </div>

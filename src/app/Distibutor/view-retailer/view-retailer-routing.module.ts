@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DropdownComponent } from './dropdown.component';
+import { ViewRetailerComponent } from './view-retailer.component';
 
 const routes: Routes = [{
   path: '',
-  component: DropdownComponent
+  component: ViewRetailerComponent
 }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-
-export class DropdownRoutingModule { }
+export class ViewRetailerRoutingModule { }

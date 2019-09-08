@@ -15,6 +15,7 @@ import { LoadingPageModule, MaterialBarModule } from 'angular-loading-page';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { httpSetHeaders } from '../app/interceptors.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlertModule as MkAlertModule, BoxModule } from 'angular-admin-lte';
 
 @NgModule({
   imports: [
@@ -23,7 +24,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CoreModule,
     LayoutModule.forRoot(adminLteConf),
     LoadingPageModule, MaterialBarModule,
-    FormsModule,ReactiveFormsModule
+    FormsModule,ReactiveFormsModule,
+    MkAlertModule,
+    BoxModule
   ],
   declarations: [
     AppComponent,
