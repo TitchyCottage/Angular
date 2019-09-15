@@ -1,8 +1,8 @@
 export class User {
     userId: number;
     name: string;
-    emailAddress: string;
-    fullName: string;
-    roles: string[];
+    EmailAddress: string;
+    FullName: string;
+    Roles: string;
     access_token:string;
 }

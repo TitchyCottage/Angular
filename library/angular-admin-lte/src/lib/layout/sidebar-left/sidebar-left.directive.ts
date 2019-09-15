@@ -15,5 +15,7 @@ export class SidebarLeftToggleDirective {
    */
   constructor(
     public elementRef: ElementRef
-  ) {}
+  ) {
+    
+  }
 }

@@ -26,6 +26,8 @@ import {removeListeners, removeSubscriptions} from '../../helpers';
 
 import {SidebarLeftToggleDirective} from './sidebar-left.directive';
 
+import {authService} from '../../../../../../src/app/Service/auth';
+
 export interface Item {
   id: number;
   parentId: number;
@@ -90,15 +92,18 @@ export class SidebarLeftComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private routingService: RoutingService,
     private wrapperService: WrapperService,
-    private headerService: HeaderService
+    private headerService: HeaderService,
+    private _auth:authService
   ) {}
 
   /**
    * @method ngOnInit
    */
   ngOnInit() {
+    debugger;
     this.subscriptions.push(this.layoutStore.sidebarLeftMenu.subscribe(value => {
-      this.menu = value;
+      
+      this.menu = this.MenuFilter(value);
       this.monkeyPatchMenu(this.menu);
       if (this.initialized) {
         this.setMenuListeners(this.activeUrl);
@@ -119,8 +124,43 @@ export class SidebarLeftComponent implements OnInit, AfterViewInit, OnDestroy {
     }));
 
     this.setSidebarListeners();
+
   }
 
+  MenuFilter(value){
+    debugger;
+    let temp =[];
+    if(value.length){
+      if(this._auth.currentUserValue.Roles === "Distributor"){
+        let land = value.filter(
+          f => f.label === "Get Started")[0];
+
+          let distibutor = value.filter(
+            f => f.label === "Distibutor")[0];    
+
+        temp.push(land);
+        temp.push(distibutor);
+
+      }else if(this._auth.currentUserValue.Roles === "Manufacturer"){
+       let land = value.filter(
+          f => f.label === "Get Started")[0];
+
+          let product = value.filter(
+            f => f.label === "Product")[0];    
+
+            temp.push(land);
+            temp.push(product);
+      }else if(this._auth.currentUserValue.Roles === "Retailer"){
+        let land = value.filter(
+          f => f.label === "Get Started")[0];
+          temp.push(land);
+      }else{
+        temp = value;
+      }
+   
+return temp;
+    }
+  }
   /**
    * @method ngAfterViewInit
    */
