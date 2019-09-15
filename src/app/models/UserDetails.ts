@@ -2,6 +2,7 @@ export class UserDetails {
       id:string;
       firstName: string;
       lastName: string;
+      fullName:string;
       password: string;
       currentPassword: null;
       role: string;

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
-import { Product, ProductQuantity } from '../models/product';
+import { Product, ProductQuantity, DistibutorDashboardRequestModel } from '../models/product';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -62,4 +62,12 @@ export class productService {
         }))
     }
 
+    SearchProductsForDistibutor(data:DistibutorDashboardRequestModel){
+        debugger;
+        return this.http.post<any>(`${environment.apiUrl}/api/Transaction/GetShopInformationForDistibutor`,data)
+        .pipe(map(shop => {
+            debugger;
+            return shop.data;
+        }));
+    }
 }

@@ -43,7 +43,6 @@ export class AddProductComponent implements OnInit {
   }
 
 GetProductList(){
-  
   this._product.GetProducts()
   // .pipe(first())
   .subscribe(
@@ -56,8 +55,6 @@ GetProductList(){
         debugger;
         
       });
-
-  
   }
 
 

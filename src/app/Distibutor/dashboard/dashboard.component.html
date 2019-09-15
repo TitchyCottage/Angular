@@ -1,3 +1,124 @@
-<p>
-  dashboard works!
-</p>
+<div class="col-md-12">
+  <!-- Horizontal Form -->
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Distibutor Dashboard</h3>
+    </div >
+    <div class="col-sm-12"  *ngIf="hasError">
+        <mk-alert [dismissOnTimeout]="10000"     backgroundColor="danger">
+            <h4>
+              <i class="icon fa fa-ban"></i>
+             Error!
+            </h4>
+           {{error}}
+          </mk-alert>
+    </div>
+    <div class="col-sm-12"  *ngIf="hasSuccess">
+        <mk-alert [dismissOnTimeout]="10000"    backgroundColor="success">
+            <h4>
+              <i class="icon fa fa-check"></i>
+              Success!
+            </h4>
+           {{success}}
+          </mk-alert>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form action="/" class="form-horizontal" [formGroup]="addDashboardForm" (ngSubmit)="onSubmit()" method="post">
+      <div class="box-body">
+
+        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" list="productList" name="productName" formControlName="productName"   placeholder="Product Name.." />
+            <datalist id="productList" >
+                <select >
+                    <option *ngFor="let c of products" class="form-control" [value]="c.productName"></option>
+                </select>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" list="productqtyList" name="lot" formControlName="lot"   placeholder="Lot.." />
+            <datalist id="productqtyList" >
+                <select >
+                    <option *ngFor="let c of productQuantity" class="form-control" [value]="c.lot"></option>
+                </select>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+          <div class="col-sm-10"> 
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <input type="date" class="form-control"  formControlName="expiredDate" >
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-3 col-sm-6 col-xs-12">
+          <div class="col-sm-10">
+            <input type="text" class="form-control" list="distibutorListIs" name="distibutorId" formControlName="distibutorId"   placeholder="Distibutor.." />
+            <datalist id="distibutorListIs" >
+                <select >
+                    <option *ngFor="let c of distibutorList" class="form-control" [value]="c.fullName"></option>
+                </select>
+            </datalist>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button  type="button" class="btn btn-default" (click)="Cancel()">Clear</button>
+        <button type="submit" class="btn btn-info pull-right">Search</button>
+      </div>
+      <!-- /.box-footer -->
+    </form>
+  </div>
+  <!-- /.box -->
+</div>
+
+<div class="col-md-12">
+  <div class="box">
+    <div class="box-header with-border">
+      <h3 class="box-title">View Products</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Shop Name</th>
+            <th>Product Name</th>
+            <th>Lot</th>
+            <th>Manufacturer Date</th>
+            <th>Expired Date</th>
+            <th>Total Qty</th>
+            <th>StockIn Qty</th>
+            <th>SoldOut Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let camper of dashboardView">
+          
+            <td>{{camper.shopName}}</td>
+            <td>{{camper.productName}}</td>
+            <td>{{camper.lot}}</td>
+            <td>{{camper.manufacturerDate | date :'mediumDate'}}</td>
+            <td>{{camper.expiredDate | date :'mediumDate'}}</td>
+            <td> <span class="badge bg-yellow">{{camper.totalQuantity}}</span></td>
+            <td><span class="badge bg-green">{{camper.stockInQuantity}}</span></td>
+            <td><span class="badge bg-red">{{camper.soldOutQuantity}}</span></td>
+          </tr>
+    
+          </tbody>
+          </table>
+
+    </div>
+    <!-- /.box-body -->
+  </div>
+  <!-- /.box -->
+</div>

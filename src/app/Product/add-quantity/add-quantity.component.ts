@@ -54,14 +54,15 @@ export class AddQuantityComponent implements OnInit {
   });
 
   }
+
   currentDate(date="") {
     debugger;
     if(date){
       const currentDate = new Date(date);
-      return currentDate.toISOString().substring(0,10);
+      return    currentDate.getFullYear()+  "-"  + currentDate.getMonth().toString().padStart(2,"0") + "-" + currentDate.getDate().toString().padStart(2,"0") ;
     }else{
       const currentDate = new Date();
-      return currentDate.toISOString().substring(0,10);
+      return    currentDate.getFullYear() + "-" + currentDate.getMonth().toString().padStart(2,"0") + "-" + currentDate.getDate().toString().padStart(2,"0") ;
     }
   }
 

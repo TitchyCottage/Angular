@@ -20,3 +20,23 @@ export class ProductQuantity
     soldOutQuantity:number;
     createdBy:string;
 }
+
+export class DistibutorDashboardRequestModel
+{
+    productName:number;
+    lot:string;
+    ExpiredDate:string;
+    DistibutorId:string;
+}
+
+export class DistibutorDashboardResponseModel
+{
+    ShopName:string;
+    ProductName:string;
+    Lot:string;
+    ManufacturerDate:Date;
+    ExpiredDate:Date;
+    TotalQuantity:number;
+    StockInQuantity:number;
+    SoldOutQuantity:number;
+}

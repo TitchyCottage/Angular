@@ -1,3 +1,103 @@
-<p>
-  check-in works!
-</p>
+<div class="col-md-12">
+  <!-- Horizontal Form -->
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 class="box-title">Check-In</h3>
+    </div >
+    <div class="col-sm-12"  *ngIf="hasError">
+        <mk-alert [dismissOnTimeout]="10000"  backgroundColor="danger">
+            <h4>
+              <i class="icon fa fa-ban"></i>
+             Error!
+            </h4>
+           {{error}}
+          </mk-alert>
+    </div>
+    <div class="col-sm-12"  *ngIf="hasSuccess">
+        <mk-alert [dismissOnTimeout]="10000"    backgroundColor="success">
+            <h4>
+              <i class="icon fa fa-check"></i>
+              Success!
+            </h4>
+           {{success}}
+          </mk-alert>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form action="/" class="form-horizontal" [formGroup]="checkInForm" (ngSubmit)="onSubmit()" method="post">
+      <div class="box-body">
+
+        <div class="form-group" [ngClass]="{' has-error': submitted && data.shopName.errors && data.shopName.errors.required  }">
+          <label for="inputEmail3" class="col-sm-2 control-label">Shop Name</label>
+
+          <div class="col-sm-10">
+            <!-- <input type="text" class="form-control"  formControlName="city" > -->
+            <input type="text" class="form-control" list="shopList" name="shopName" formControlName="shopName"   placeholder="search.." />
+            <datalist id="shopList" >
+                <select >
+                    <option *ngFor="let c of shops" class="form-control" [value]="c.shopName"></option>
+                </select>
+            </datalist>
+          </div>
+        </div>
+
+        <div class="form-group" [ngClass]="{' has-error': submitted && data.lot.errors && data.lot.errors.required  }">
+            <label for="inputEmail3" class="col-sm-2 control-label">Lot</label>
+  
+            <div class="col-sm-10">
+              <!-- <input type="text" class="form-control"  formControlName="city" > -->
+              <input type="text" class="form-control" list="lotList" name="lot" (change) = "OnLotChange()" formControlName="lot"   placeholder="search.." />
+              <datalist id="lotList" >
+                  <select >
+                      <option *ngFor="let c of products" class="form-control"  [value]="c.lot"></option>
+                  </select>
+              </datalist>
+            </div>
+          </div>
+
+            <div class="form-group" [ngClass]="{' has-error': submitted && data.productName.errors && data.productName.errors.required  }">
+                <label for="inputEmail3" class="col-sm-2 control-label">Product Name</label>
+      
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  formControlName="productName">
+      
+                </div>
+              </div>
+
+              <div class="form-group" [ngClass]="{' has-error': submitted && data.expiredDate.errors && data.expiredDate.errors.required  }">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Expired Date</label>
+        
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control"  value="{{expiredDate}}" formControlName="expiredDate">
+        
+                  </div>
+                </div>
+
+
+              <div class="form-group" [ngClass]="{' has-error': submitted && data.availableQty.errors && data.availableQty.errors.required  }">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Available Qty</label>
+        
+                  <div class="col-sm-10">
+                    <input type="number" class="form-control"  formControlName="availableQty">
+                  </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{' has-error': submitted && data.quantity.errors && data.quantity.errors.required  }">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Qty</label>
+          
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control"  formControlName="quantity">
+                    </div>
+                  </div>
+                    
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button  type="button" class="btn btn-default" (click)="Cancel()">Cancel</button>
+        <button type="submit" class="btn btn-info pull-right">Check-In</button>
+      </div>
+      <!-- /.box-footer -->
+    </form>
+  </div>
+  <!-- /.box -->
+</div>
